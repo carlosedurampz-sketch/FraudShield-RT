@@ -1,5 +1,6 @@
 """Cost optimisation: the optimal threshold must beat threshold 0.50
 and beat approving everything, on a simple hand-made case."""
+
 import numpy as np
 
 from src.cost_optimization import find_optimal_threshold, total_cost
