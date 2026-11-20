@@ -1,0 +1,25 @@
+{
+  "in_process_testclient_run1_n500_no_warmup": {
+    "mean_ms": 6.29,
+    "p50_ms": 3.96,
+    "p95_ms": 33.97,
+    "p99_ms": 38.95,
+    "throughput_req_s": 159
+  },
+  "in_process_testclient_run2_n500_warmup20": {
+    "mean_ms": 19.65,
+    "p50_ms": 5.99,
+    "p95_ms": 73.69,
+    "p99_ms": 90.61,
+    "throughput_req_s": 51
+  },
+  "live_uvicorn_n200": {
+    "mean_ms": 10.37,
+    "p50_ms": 4.54,
+    "p95_ms": 58.17,
+    "p99_ms": 61.72,
+    "throughput_req_s": 96
+  },
+  "note": "Measured on a shared 1.5-CPU VM; latency varies run to run with CPU throttling. Median (p50) is single-digit ms in all runs; p95 is tens of ms here. First request after startup is slower (cold model load, ~180 ms). ILLUSTRATIVE - synthetic data.",
+  "in_process_testclient_run3_n500_warmup20": "run via run_all.sh: mean 6.12 ms, p50 4.56 ms, p95 9.78 ms, p99 50.37 ms, 163 req/s"
+}

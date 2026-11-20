@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+data/*.csv
+!data/.gitkeep
+models/*.pkl
+# Keep the small JSON summaries (metrics, savings, latency) versioned so the
+# README's results are visible on GitHub without running the pipeline.
+outputs/*.csv
+!outputs/.gitkeep
+.DS_Store
+.pytest_cache/

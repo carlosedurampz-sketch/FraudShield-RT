@@ -1,0 +1,65 @@
+{
+  "test_n": 18089,
+  "fraud_n": 151,
+  "optimal_threshold": 0.02,
+  "model_at_optimal_threshold": {
+    "threshold": 0.02,
+    "tp": 95,
+    "fp": 233,
+    "fn": 56,
+    "tn": 17705,
+    "fraud_caught": 95,
+    "fraud_missed": 56,
+    "fraud_missed_amount_mxn": 208050.47,
+    "false_positive_cost_mxn": 27960.0,
+    "review_cost_mxn": 5700.0,
+    "total_cost_mxn": 241710.47,
+    "precision": 0.2896341463414634,
+    "recall": 0.6291390728476821
+  },
+  "static_rules": {
+    "static_A_amount_gt_5000": {
+      "tp": 42,
+      "fp": 291,
+      "fn": 109,
+      "tn": 17647,
+      "total_cost_mxn": 303419.08,
+      "precision": 0.12612612612612611,
+      "recall": 0.2781456953642384
+    },
+    "static_B_amount_gt_5000_or_velocity_ge5_1h": {
+      "tp": 49,
+      "fp": 291,
+      "fn": 102,
+      "tn": 17647,
+      "total_cost_mxn": 285864.63,
+      "precision": 0.14411764705882352,
+      "recall": 0.32450331125827814
+    },
+    "static_C_amount_gt_2000": {
+      "tp": 99,
+      "fp": 2439,
+      "fn": 52,
+      "tn": 15499,
+      "total_cost_mxn": 367724.38,
+      "precision": 0.03900709219858156,
+      "recall": 0.6556291390728477
+    },
+    "no_controls_approve_all": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 151,
+      "tn": 17938,
+      "total_cost_mxn": 726699.93,
+      "precision": 0.0,
+      "recall": 0.0
+    }
+  },
+  "net_savings_vs_best_static_rule_mxn": 44154.16,
+  "net_savings_vs_approve_all_mxn": 484989.4600000001,
+  "note": "ILLUSTRATIVE \u2014 synthetic data. Costs use the matrix in src/cost_optimization.py (FN = amount, FP = $120, TP = $60).",
+  "savings_vs_static_A_amount_gt_5000_mxn": 61708.610000000015,
+  "savings_vs_static_B_amount_gt_5000_or_velocity_ge5_1h_mxn": 44154.16,
+  "savings_vs_static_C_amount_gt_2000_mxn": 126013.91,
+  "savings_vs_no_controls_approve_all_mxn": 484989.4600000001
+}
