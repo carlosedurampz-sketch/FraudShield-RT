@@ -22,6 +22,7 @@ to learn, and the signals are the ones fraud teams actually use):
 
 All randomness is seeded (default 42) for reproducibility.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -42,9 +43,7 @@ def generate(n: int = 60_000, seed: int = 42) -> pd.DataFrame:
     device_age = rng.integers(1, 900, size=n_devices)
 
     # --- base (mostly legitimate) transactions ---------------------------
-    timestamps = start + pd.to_timedelta(
-        rng.uniform(0, 60 * 24 * 60, size=n), unit="m"
-    )
+    timestamps = start + pd.to_timedelta(rng.uniform(0, 60 * 24 * 60, size=n), unit="m")
     account_id = rng.integers(0, n_accounts, size=n)
     # Most accounts reuse 1-2 devices; a minority use a brand-new device.
     device_id = np.where(
@@ -100,7 +99,8 @@ def generate(n: int = 60_000, seed: int = 42) -> pd.DataFrame:
             bursts.append(
                 {
                     "transaction_id": f"TX-BURST-{b:03d}-{k}",
-                    "timestamp": t0 + pd.to_timedelta(int(rng.integers(0, 10)), unit="m"),
+                    "timestamp": t0
+                    + pd.to_timedelta(int(rng.integers(0, 10)), unit="m"),
                     "account_id": acc,
                     "device_id": dev,
                     "merchant_id": f"MER-{rng.integers(0, n_merchants):04d}",
@@ -132,8 +132,10 @@ def main() -> None:
     print(f"Wrote {len(df):,} transactions to {out}")
     print(f"Fraud rate: {rate:.3%} ({int(df['is_fraud'].sum())} fraud)")
     print(f"Date range: {df['timestamp'].min()} → {df['timestamp'].max()}")
-    print(f"Total volume: ${df['amount_mxn'].sum():,.0f} MXN | "
-          f"Fraud volume: ${df.loc[df['is_fraud'] == 1, 'amount_mxn'].sum():,.0f} MXN")
+    print(
+        f"Total volume: ${df['amount_mxn'].sum():,.0f} MXN | "
+        f"Fraud volume: ${df.loc[df['is_fraud'] == 1, 'amount_mxn'].sum():,.0f} MXN"
+    )
 
 
 if __name__ == "__main__":
