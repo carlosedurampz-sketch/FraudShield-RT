@@ -1,24 +1,32 @@
 """No temporal leakage: velocity features must use ONLY past transactions."""
+
 import pandas as pd
 
 from src.features import add_velocity_features
 
 
 def _df():
-    return pd.DataFrame({
-        "transaction_id": ["TX-000001", "TX-000002", "TX-000003", "TX-000004"],
-        "timestamp": pd.to_datetime([
-            "2026-01-01 10:00", "2026-01-01 10:05", "2026-01-01 10:07",
-            "2026-01-02 10:00"]),
-        "account_id": ["ACC-00001"] * 4,
-        "device_id": ["DEV-00001"] * 4,
-        "merchant_id": ["MER-0001"] * 4,
-        "amount_mxn": [100.0, 200.0, 300.0, 400.0],
-        "channel": ["online"] * 4,
-        "account_age_days": [365] * 4,
-        "device_age_days": [100] * 4,
-        "is_fraud": [0, 0, 0, 0],
-    })
+    return pd.DataFrame(
+        {
+            "transaction_id": ["TX-000001", "TX-000002", "TX-000003", "TX-000004"],
+            "timestamp": pd.to_datetime(
+                [
+                    "2026-01-01 10:00",
+                    "2026-01-01 10:05",
+                    "2026-01-01 10:07",
+                    "2026-01-02 10:00",
+                ]
+            ),
+            "account_id": ["ACC-00001"] * 4,
+            "device_id": ["DEV-00001"] * 4,
+            "merchant_id": ["MER-0001"] * 4,
+            "amount_mxn": [100.0, 200.0, 300.0, 400.0],
+            "channel": ["online"] * 4,
+            "account_age_days": [365] * 4,
+            "device_age_days": [100] * 4,
+            "is_fraud": [0, 0, 0, 0],
+        }
+    )
 
 
 def test_first_transaction_has_zero_velocity():
